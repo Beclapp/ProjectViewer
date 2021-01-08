@@ -1,11 +1,26 @@
 import React, { useState } from 'react';
-import { Text, View, Button, TextInput } from 'react-native';
+import { Text, View, Button, TextInput, AsyncStorage } from 'react-native';
 
 let projectName = '';
 let projectSubmitted = false;
+let customer = '';
 
 let submitForm = async () => {
   projectSubmitted = true;
+  let key = 'PROJECT' + projectName;
+  let content = {
+    key: key,
+    name: projectName,
+    customer: customer,
+  }
+  try {
+    await AsyncStorage.setItem(key, JSON.stringify(content));
+  }
+  catch (error) {
+    alert(error);
+  }
+  projectName = '';
+  customer = '';
 }
 
 export default class Form extends React.Component {

@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import Project from './Project.js'
 import Form, { projectName } from './NewProjectForm'
+import ProjectList from './ProjectList'
 
 const Root = createStackNavigator()
 let staticCount = 0;
@@ -21,14 +22,7 @@ const DefaultScreen = ({ navigation }) => {
           }
        />
       <Text>Home!</Text>
-      <FlatList
-      style={styles.container}
-      data={items}
-      renderItem={({ item }) => <TouchableOpacity style={styles.row}>
-      <Text>{item.text}</Text>
-      </TouchableOpacity>}
-      keyExtractor={( item ) => item.project}
-      />
+      <ProjectList />
     </View>
   )
 }
